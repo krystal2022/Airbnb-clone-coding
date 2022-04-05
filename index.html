@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에어비엔비</title>
+
+
+
+  <!--브라우저 스타일 초기화-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+
+  <!--파비콘-->
+  <link rel="shortcut icon" href="./favicon.ico" />
+  <!-- <link rel="icon" href="./favicon.png" /> -->
+
+  <!-- google material icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="./css/main.css">
+
+  <script defer src="./js/main.js"></script>
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <div class="inner">
+      <div class="headerWrap">
+        <div class="logo">
+          <img src="./images/airbnblogo_w.png" alt="airbnb logo">
+        </div>
+
+        <div class="menu_inner">
+          <ul class="menu">
+            <li class="item">
+
+              <span class="item__name first_name on">숙소</span>
+              <div class="item__contents first">
+                <ul class="contents__menu">
+                  <li>
+                    <ul class="contents">
+                      <li>
+                        <ul>
+                          <li>위치</li>
+                          <li><input type="text" placeholder="어디로 여행가세요?"></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul class="contents">
+                      <li>
+                        <ul>
+                          <li>체크인</li>
+                          <li>날짜 입력</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul class="contents">
+                      <li>
+                        <ul>
+                          <li>체크아웃</li>
+                          <li>날짜 입력</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul class="contents last">
+                      <li>
+                        <ul>
+                          <li>인원</li>
+                          <li>게스트 추가</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <div class="search_icon">
+                  <span class="material-icons">search</span>
+                </div>
+              </div>
+
+              <span class="item__name second_name">체험</span>
+              <div class="item__contents second">
+                <ul class="contents__menu">
+                  <li>
+                    <ul class="contents">
+                      <li>
+                        <ul>
+                          <li>위치</li>
+                          <li><input type="text" placeholder="어디로 여행가세요?"></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul class="contents last">
+                      <li>
+                        <ul>
+                          <li>날짜</li>
+                          <li>원하는 날짜를 입력하세요.</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <div class="search_icon">
+                  <span class="material-icons">search</span>
+                </div>
+
+
+              </div>
+
+              <span class="item__name"><a href="javascript:void(0)">온라인 체험</a></span>
+
+            </li>
+          </ul>
+
+          <!-- 메뉴에 옵션으로 뜨는 창 -->
+          <!-- 위치 -->
+          <div class="location_search">
+            <ul>
+              <li class="location_search_txt">
+                어디로든 떠나는 여행
+              </li>
+              <li class="location_search_button">
+                <a href="javascript:void(0)">
+                  <ul>
+                    <li>유연한 검색</li>
+                    <li class="arrow_button">
+                      <span class="material-icons">
+                        arrow_forward_ios
+                      </span>
+                    </li>
+                  </ul>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 체크인 -->
+          <div class="checkin">
+
+          </div>
+
+          <!-- 체크아웃 -->
+          <div class="checkout">
+
+          </div>
+
+
+          <!-- 인원 -->
+          <div class="guestnumber">
+            <ul class="guestnumber_wrap">
+              <li class="adultnumber">
+                <ul>
+                  <li class="txt">
+                    <ul>
+                      <li class="title">성인</li>
+                      <li class="detail">만 13세 이상</li>
+                    </ul>
+                  </li>
+                  <li class="numberbutton">
+                    <div class="button__minus" onclick='count("minus")'>
+                      <span class="material-icons">
+                        remove
+                      </span>
+                    </div>
+                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                    <div class="result">0</div>
+                    <div class="button__plus" onclick='count("plus")'>
+                      <span class="material-icons">
+                        add
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="childrennumber">
+                <ul>
+                  <li class="txt">
+                    <ul>
+                      <li class="title">어린이</li>
+                      <li class="detail">만 2~12세</li>
+                    </ul>
+                  </li>
+                  <li class="numberbutton">
+                    <div class="button__minus" onclick='count("minus")'>
+                      <span class="material-icons">
+                        remove
+                    </div>
+                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                    <div class="result">0</div>
+                    <div class="button__plus" onclick='count("plus")'>
+                      <span class="material-icons">
+                        add
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="kidsnumber">
+                <ul>
+                  <li class="txt">
+                    <ul>
+                      <li class="title">유아</li>
+                      <li class="detail">만 2세 미만</li>
+                    </ul>
+                  </li>
+                  <li class="numberbutton">
+                    <div class="button__minus" onclick='count("minus")'>
+                      <span class="material-icons">
+                        remove
+                      </span>
+                    </div>
+                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                    <div class="result">0</div>
+                    <div class="button__plus" onclick='count("plus")'>
+                      <span class="material-icons">
+                        add
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="petnumber">
+                <ul>
+                  <li class="txt">
+                    <ul>
+                      <li class="title">반려동물</li>
+                      <li class="detail"><a href="javascript:void(0)">보조동물을 동반하시나요?</a></li>
+                    </ul>
+                  </li>
+                  <li class="numberbutton">
+                    <div class="button__minus" onclick='count("minus")'>
+                      <span class="material-icons">
+                        remove
+                      </span>
+                    </div>
+                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                    <div class="result">0</div>
+                    <div class="button__plus" onclick='count("plus")'>
+                      <span class="material-icons">
+                        add
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="info">
+                <div class="detail">
+                  반려동물을 3마리 이상 동반하는 경우, 반드시<br>
+                  호스트에게 알려주세요.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+
+
+
+
+        <!-- 헤더 오른쪽 네비 -->
+        <nav class="header_right_wrap">
+          <div class="header_right">
+            <div class="header_right_host">
+              <div class="host"><a href="javascript:void(0)">호스트 되기</a></div>
+              <div class="language"><a href="javascript:void(0)"><span class="material-icons">language</span></a>
+              </div>
+            </div>
+
+            <div class="signin">
+              <div class="signin_item">
+                <span class="material-icons">segment</span>
+                <span class="material-icons">account_circles</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    </div>
+  </header>
+
+</body>
+
+</html>
