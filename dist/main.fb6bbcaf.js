@@ -123,75 +123,90 @@ var menuname1El = document.querySelector('.item__name.first_name');
 var menuname2El = document.querySelector('.item__name.second_name');
 var submenu1El = document.querySelector('.item__contents.first');
 var submenu2El = document.querySelector('.item__contents.second');
+var searchEl = document.getElementsByClassName('search_icon');
+var submenuliEls = document.querySelectorAll('.contents__menu>li');
+var optionMenu = document.getElementsByClassName('option');
 menuname1El.addEventListener('click', function () {
   submenu2El.classList.remove('on');
   submenu1El.classList.remove('hide');
   menuname1El.classList.add('on');
   menuname2El.classList.remove('on');
+
+  for (var i = 4; i < 6; i++) {
+    submenuliEls[i].classList.remove('on');
+  }
 });
 menuname2El.addEventListener('click', function () {
   submenu1El.classList.add('hide');
   submenu2El.classList.add('on');
   menuname1El.classList.remove('on');
   menuname2El.classList.add('on');
-}); // 돋보기아이콘 클릭 시 검색문구 추가 (숙소메뉴)
 
-var searchEl = document.getElementsByClassName('search_icon');
+  for (var i = 0; i < 4; i++) {
+    optionMenu[i].style.display = "none";
+    submenuliEls[i].classList.remove('on');
+  }
+}); // 검색아이콘 클릭 시 검색문구 추가 (숙소메뉴0 / 체험메뉴1)
 
-function appendChild1() {
-  var content1 = document.createTextNode('검색');
-  var newdiv1 = document.createElement('div');
-  newdiv1.style.color = "white";
-  newdiv1.style.fontWeight = "bold";
-  newdiv1.style.position = "absolute";
-  newdiv1.style.top = "12px";
-  newdiv1.style.left = "37px";
-  newdiv1.appendChild(content1);
-  searchEl[0].appendChild(newdiv1);
-} // 돋보기아이콘 클릭 시 검색문구 추가 (체험메뉴)
+console.log(optionMenu);
 
+var _loop = function _loop(i) {
+  searchEl[i].addEventListener('click', function searchElTxt() {
+    var content = document.createTextNode('검색');
+    var newdiv = document.createElement('div');
+    newdiv.style.cssText = "color:white; font-weight:bold; position:absolute; top:12px; left:37px";
+    newdiv.appendChild(content);
+    searchEl[i].appendChild(newdiv);
+    searchEl[i].style.cssText = "width:90px";
 
-function appendChild2() {
-  var content2 = document.createTextNode('검색');
-  var newdiv2 = document.createElement('div');
-  newdiv2.style.color = "white";
-  newdiv2.style.fontWeight = "bold";
-  newdiv2.style.position = "absolute";
-  newdiv2.style.top = "12px";
-  newdiv2.style.left = "37px";
-  newdiv2.appendChild(content2);
-  searchEl[1].appendChild(newdiv2);
-} // // 돋보기아이콘 클릭 시 스타일 변경
-// 서브메뉴들 오른쪽 크기가 늘어남(숙소)
+    if (i === 0) {
+      submenuliEls[0].style.cssText = "padding-right:10px";
+      optionMenu[0].style.cssText = "display: block";
+      submenuliEls[0].classList.add('on');
+    } else if (i === 1) {
+      submenuliEls[4].style.cssText = "padding-right:10px";
+      optionMenu[0].style.cssText = "display: none";
+    }
+  });
+};
 
-
-var submenuliEl = document.querySelectorAll('.contents__menu li');
-
-function submenusize1() {
-  submenuliEl[0].style.paddingRight = "20px";
-} //서브메뉴들 오른쪽 크기가 늘어남(체험)
+for (var i = 0; i < searchEl.length; i++) {
+  _loop(i);
+} //서브메뉴 클릭시 입체적으로 그림자생성 
 
 
-function submenusize2() {
-  submenuliEl[1].style.paddingRight = "20px";
-}
+var _loop2 = function _loop2(_i) {
+  submenuliEls[_i].addEventListener('click', function () {
+    for (var j = 0; j < submenuliEls.length; j++) {
+      submenuliEls[j].classList.remove('on');
+    }
 
-searchEl[0].addEventListener('click', function () {
-  // submenuliEl.classList.add('on')
-  appendChild1(); //검색문구추가
+    submenuliEls[_i].classList.add('on'); //검색아이콘 활성화
 
-  submenusize1(); //서브메뉴들 오른쪽사이즈 늘림
 
-  searchEl[0].classList.add('on');
-});
-searchEl[1].addEventListener('click', function () {
-  // submenuliEl.classList.add('on')
-  appendChild2(); //검색문구추가
+    for (var _i3 = 0; _i3 < searchEl.length; _i3++) {
+      var content = document.createTextNode('검색');
+      var newdiv = document.createElement('div');
+      newdiv.style.cssText = "color:white; font-weight:bold; position:absolute; top:12px; left:37px";
+      newdiv.appendChild(content);
 
-  submenusize2(); //서브메뉴들 오른쪽사이즈 늘림
+      searchEl[_i3].appendChild(newdiv);
 
-  searchEl[1].classList.add('on');
-}); // 인원추가 버튼
+      searchEl[_i3].style.cssText = "width:90px";
+
+      if (_i3 === 0) {
+        submenuliEls[0].style.cssText = "padding-right:10px";
+      } else if (_i3 === 1) {
+        submenuliEls[4].style.cssText = "padding-right:10px";
+      }
+    }
+  });
+};
+
+for (var _i = 0; _i < submenuliEls.length; _i++) {
+  _loop2(_i);
+} // 인원추가 버튼
+
 
 var minusiconLine = document.getElementsByClassName('button__minus');
 var minusicon = document.querySelectorAll('.button__minus span');
@@ -199,53 +214,54 @@ var plusiconLine = document.getElementsByClassName('button__plus');
 var plusicon = document.querySelectorAll('.button__plus span');
 var resultEl = document.getElementsByClassName('result');
 
-var _loop = function _loop(i) {
-  minusicon[i].addEventListener('click', function () {
-    var number = resultEl[i].innerText;
+var _loop3 = function _loop3(_i2) {
+  minusicon[_i2].addEventListener('click', function () {
+    var number = resultEl[_i2].innerText;
     number = parseInt(number) - 1;
 
     if (number < 0) {
       number = 0;
     } else if (0 < number < 5) {
-      plusiconLine[i].style.borderColor = "grey";
-      plusicon[i].style.color = "grey";
-      minusiconLine[i].style.borderColor = "grey";
-      minusicon[i].style.color = "grey";
+      plusiconLine[_i2].style.borderColor = "grey";
+      plusicon[_i2].style.color = "grey";
+      minusiconLine[_i2].style.borderColor = "grey";
+      minusicon[_i2].style.color = "grey";
     }
 
     if (number === 0) {
-      minusiconLine[i].style.borderColor = "#ccc";
-      minusicon[i].style.color = "#ccc";
-      plusiconLine[i].style.borderColor = "grey";
-      plusicon[i].style.color = "grey";
+      minusiconLine[_i2].style.borderColor = "#ccc";
+      minusicon[_i2].style.color = "#ccc";
+      plusiconLine[_i2].style.borderColor = "grey";
+      plusicon[_i2].style.color = "grey";
     }
 
-    resultEl[i].innerText = number;
+    resultEl[_i2].innerText = number;
   });
-  plusicon[i].addEventListener('click', function () {
-    var number = resultEl[i].innerText;
+
+  plusicon[_i2].addEventListener('click', function () {
+    var number = resultEl[_i2].innerText;
     number = parseInt(number) + 1;
 
     if (number > 5) {
       number = 5;
     } else if (0 < number < 5) {
-      minusiconLine[i].style.borderColor = "grey";
-      minusicon[i].style.color = "grey";
+      minusiconLine[_i2].style.borderColor = "grey";
+      minusicon[_i2].style.color = "grey";
     }
 
     if (number === 5) {
-      plusiconLine[i].style.borderColor = "#ccc";
-      plusicon[i].style.color = "#ccc";
-      minusiconLine[i].style.borderColor = "grey";
-      minusicon[i].style.color = "grey";
+      plusiconLine[_i2].style.borderColor = "#ccc";
+      plusicon[_i2].style.color = "#ccc";
+      minusiconLine[_i2].style.borderColor = "grey";
+      minusicon[_i2].style.color = "grey";
     }
 
-    resultEl[i].innerText = number;
+    resultEl[_i2].innerText = number;
   });
 };
 
-for (var i = 0; i < minusicon.length; i++) {
-  _loop(i);
+for (var _i2 = 0; _i2 < minusicon.length; _i2++) {
+  _loop3(_i2);
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -275,7 +291,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55648" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63956" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

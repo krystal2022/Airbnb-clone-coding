@@ -4,78 +4,86 @@ const menuname2El = document.querySelector('.item__name.second_name')
 const submenu1El = document.querySelector('.item__contents.first')
 const submenu2El = document.querySelector('.item__contents.second')
 
+const searchEl = document.getElementsByClassName('search_icon')
+const submenuliEls = document.querySelectorAll('.contents__menu>li')
+const optionMenu = document.getElementsByClassName('option')
+
 menuname1El.addEventListener('click', function () {
   submenu2El.classList.remove('on')
   submenu1El.classList.remove('hide')
   menuname1El.classList.add('on')
   menuname2El.classList.remove('on')
-
+  for (let i = 4; i < 6; i++) {
+    submenuliEls[i].classList.remove('on')
+  }
 });
 menuname2El.addEventListener('click', function () {
   submenu1El.classList.add('hide')
   submenu2El.classList.add('on')
   menuname1El.classList.remove('on')
   menuname2El.classList.add('on')
+  for (let i = 0; i < 4; i++) {
+    optionMenu[i].style.display = "none";
+    submenuliEls[i].classList.remove('on')
+  }
 
 });
 
 
 
+// 검색아이콘 클릭 시 검색문구 추가 (숙소메뉴0 / 체험메뉴1)
 
-// 돋보기아이콘 클릭 시 검색문구 추가 (숙소메뉴)
-const searchEl = document.getElementsByClassName('search_icon')
-function appendChild1() {
-  const content1 = document.createTextNode('검색')
-  const newdiv1 = document.createElement('div')
-  newdiv1.style.color = "white"
-  newdiv1.style.fontWeight = "bold"
-  newdiv1.style.position = "absolute"
-  newdiv1.style.top = "12px"
-  newdiv1.style.left = "37px"
+console.log(optionMenu)
+for (let i = 0; i < searchEl.length; i++) {
+  searchEl[i].addEventListener('click', function searchElTxt() {
+    const content = document.createTextNode('검색')
+    const newdiv = document.createElement('div')
+    newdiv.style.cssText = "color:white; font-weight:bold; position:absolute; top:12px; left:37px"
+    newdiv.appendChild(content)
+    searchEl[i].appendChild(newdiv)
+    searchEl[i].style.cssText = "width:90px";
+    if (i === 0) {
+      submenuliEls[0].style.cssText = "padding-right:10px";
+      optionMenu[0].style.cssText = "display: block";
+      submenuliEls[0].classList.add('on')
+    } else if (i === 1) {
+      submenuliEls[4].style.cssText = "padding-right:10px";
+      optionMenu[0].style.cssText = "display: none";
+    }
 
-  newdiv1.appendChild(content1)
-  searchEl[0].appendChild(newdiv1)
-}
-// 돋보기아이콘 클릭 시 검색문구 추가 (체험메뉴)
-function appendChild2() {
-  const content2 = document.createTextNode('검색')
-  const newdiv2 = document.createElement('div')
-  newdiv2.style.color = "white"
-  newdiv2.style.fontWeight = "bold"
-  newdiv2.style.position = "absolute"
-  newdiv2.style.top = "12px"
-  newdiv2.style.left = "37px"
-
-
-  newdiv2.appendChild(content2)
-  searchEl[1].appendChild(newdiv2)
-}
-
-// // 돋보기아이콘 클릭 시 스타일 변경
-// 서브메뉴들 오른쪽 크기가 늘어남(숙소)
-const submenuliEl = document.querySelectorAll('.contents__menu li')
-function submenusize1() {
-  submenuliEl[0].style.paddingRight = "20px"
-}
-//서브메뉴들 오른쪽 크기가 늘어남(체험)
-function submenusize2() {
-  submenuliEl[1].style.paddingRight = "20px"
+  })
 }
 
 
-searchEl[0].addEventListener('click', function () {
-  // submenuliEl.classList.add('on')
-  appendChild1() //검색문구추가
-  submenusize1() //서브메뉴들 오른쪽사이즈 늘림
-  searchEl[0].classList.add('on')
-})
-searchEl[1].addEventListener('click', function () {
-  // submenuliEl.classList.add('on')
-  appendChild2() //검색문구추가
-  submenusize2() //서브메뉴들 오른쪽사이즈 늘림
-  searchEl[1].classList.add('on')
-})
 
+
+
+//서브메뉴 클릭시 입체적으로 그림자생성 
+for (let i = 0; i < submenuliEls.length; i++) {
+  submenuliEls[i].addEventListener('click', function () {
+
+    for (let j = 0; j < submenuliEls.length; j++) {
+      submenuliEls[j].classList.remove('on')
+    }
+    submenuliEls[i].classList.add('on')
+
+    //검색아이콘 활성화
+    for (let i = 0; i < searchEl.length; i++) {
+      const content = document.createTextNode('검색')
+      const newdiv = document.createElement('div')
+      newdiv.style.cssText = "color:white; font-weight:bold; position:absolute; top:12px; left:37px"
+      newdiv.appendChild(content)
+      searchEl[i].appendChild(newdiv)
+      searchEl[i].style.cssText = "width:90px";
+      if (i === 0) {
+        submenuliEls[0].style.cssText = "padding-right:10px";
+      } else if (i === 1) {
+        submenuliEls[4].style.cssText = "padding-right:10px";
+      }
+    }
+  })
+
+}
 
 
 
@@ -88,47 +96,46 @@ const plusicon = document.querySelectorAll('.button__plus span')
 const resultEl = document.getElementsByClassName('result')
 
 
-for(let i =0; i<minusicon.length; i++){
-  minusicon[i].addEventListener('click', function(){
-    
+for (let i = 0; i < minusicon.length; i++) {
+  minusicon[i].addEventListener('click', function () {
+
     let number = resultEl[i].innerText;
 
-        number = parseInt(number) - 1;
-        if (number < 0) {
-          number = 0;
-        } else if (0 < number < 5) {
-          plusiconLine[i].style.borderColor = "grey"
-          plusicon[i].style.color = "grey"
-          minusiconLine[i].style.borderColor = "grey"
-          minusicon[i].style.color = "grey"
-        }
-        if (number === 0) {
-          minusiconLine[i].style.borderColor = "#ccc"
-          minusicon[i].style.color = "#ccc"
-          plusiconLine[i].style.borderColor = "grey"
-          plusicon[i].style.color = "grey"
-        }
-        resultEl[i].innerText = number;
-      })
+    number = parseInt(number) - 1;
+    if (number < 0) {
+      number = 0;
+    } else if (0 < number < 5) {
+      plusiconLine[i].style.borderColor = "grey";
+      plusicon[i].style.color = "grey";
+      minusiconLine[i].style.borderColor = "grey";
+      minusicon[i].style.color = "grey";
+    }
+    if (number === 0) {
+      minusiconLine[i].style.borderColor = "#ccc";
+      minusicon[i].style.color = "#ccc";
+      plusiconLine[i].style.borderColor = "grey";
+      plusicon[i].style.color = "grey";
+    }
+    resultEl[i].innerText = number;
+  })
 
 
-      plusicon[i].addEventListener('click', function () {
-            let number = resultEl[i].innerText;
-        
-            number = parseInt(number) + 1;
-            if (number > 5) {
-              number = 5;
-            } else if (0 < number < 5) {
-              minusiconLine[i].style.borderColor = "grey"
-              minusicon[i].style.color = "grey"
-            }
-            if (number === 5) {
-              plusiconLine[i].style.borderColor = "#ccc"
-              plusicon[i].style.color = "#ccc"
-              minusiconLine[i].style.borderColor = "grey"
-              minusicon[i].style.color = "grey"
-            }
-            resultEl[i].innerText = number;
-          })
+  plusicon[i].addEventListener('click', function () {
+    let number = resultEl[i].innerText;
+
+    number = parseInt(number) + 1;
+    if (number > 5) {
+      number = 5;
+    } else if (0 < number < 5) {
+      minusiconLine[i].style.borderColor = "grey";
+      minusicon[i].style.color = "grey";
+    }
+    if (number === 5) {
+      plusiconLine[i].style.borderColor = "#ccc";
+      plusicon[i].style.color = "#ccc";
+      minusiconLine[i].style.borderColor = "grey";
+      minusicon[i].style.color = "grey";
+    }
+    resultEl[i].innerText = number;
+  })
 }
-
