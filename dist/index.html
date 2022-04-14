@@ -35,8 +35,8 @@
           <ul class="menu">
             <li class="item">
 
-              <span class="item__name first_name on">숙소</span>
-              <div class="item__contents first">
+              <span class="item__name on">숙소</span>
+              <div tabindex="-1" class="item__contents">
                 <ul class="contents__menu">
                   <li>
                     <ul class="contents">
@@ -82,10 +82,153 @@
                 <div class="search_icon">
                   <span class="material-icons">search</span>
                 </div>
+
+                <!-- 메뉴에 옵션으로 뜨는 창 -->
+                <div class="optionList">
+                  <!-- 숙소 위치 -->
+                  <div class="location_search option">
+                    <ul>
+                      <li class="location_search_txt">
+                        어디로든 떠나는 여행
+                      </li>
+                      <li class="location_search_button">
+                        <a href="javascript:void(0)">
+                          <ul>
+                            <li>유연한 검색</li>
+                            <li class="arrow_button">
+                              <span class="material-icons">
+                                arrow_forward_ios
+                              </span>
+                            </li>
+                          </ul>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- 체크인 -->
+                  <div class="checkin option">
+
+                  </div>
+
+                  <!-- 체크아웃 -->
+                  <div class="checkout option">
+
+                  </div>
+
+
+                  <!-- 인원 -->
+                  <div class="guestnumber option">
+                    <ul class="guestnumber_wrap">
+                      <li class="adultnumber">
+                        <ul>
+                          <li class="txt">
+                            <ul>
+                              <li class="title">성인</li>
+                              <li class="detail">만 13세 이상</li>
+                            </ul>
+                          </li>
+                          <li class="numberbutton">
+                            <div class="button__minus">
+                              <span class="material-icons">
+                                remove
+                              </span>
+                            </div>
+                            <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                            <div class="result">0</div>
+                            <div class="button__plus">
+                              <span class="material-icons">
+                                add
+                              </span>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="childrennumber">
+                        <ul>
+                          <li class="txt">
+                            <ul>
+                              <li class="title">어린이</li>
+                              <li class="detail">만 2~12세</li>
+                            </ul>
+                          </li>
+                          <li class="numberbutton">
+                            <div class="button__minus">
+                              <span class="material-icons">
+                                remove
+                            </span></div>
+                            <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                            <div class="result">0</div>
+                            <div class="button__plus">
+                              <span class="material-icons">
+                                add
+                              </span>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="kidsnumber">
+                        <ul>
+                          <li class="txt">
+                            <ul>
+                              <li class="title">유아</li>
+                              <li class="detail">만 2세 미만</li>
+                            </ul>
+                          </li>
+                          <li class="numberbutton">
+                            <div class="button__minus">
+                              <span class="material-icons">
+                                remove
+                              </span>
+                            </div>
+                            <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                            <div class="result">0</div>
+                            <div class="button__plus">
+                              <span class="material-icons">
+                                add
+                              </span>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="petnumber">
+                        <ul>
+                          <li class="txt">
+                            <ul>
+                              <li class="title">반려동물</li>
+                              <li class="detail"><a href="javascript:void(0)">보조동물을 동반하시나요?</a></li>
+                            </ul>
+                          </li>
+                          <li class="numberbutton">
+                            <div class="button__minus">
+                              <span class="material-icons">
+                                remove
+                              </span>
+                            </div>
+                            <!-- 자바스크립트로 인원숫자 넣는 곳 -->
+                            <div class="result">0</div>
+                            <div class="button__plus">
+                              <span class="material-icons">
+                                add
+                              </span>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="info">
+                        <div class="detail">
+                          반려동물을 3마리 이상 동반하는 경우, 반드시<br>
+                          호스트에게 알려주세요.
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
 
-              <span class="item__name second_name">체험</span>
-              <div class="item__contents second">
+              <span class="item__name">체험</span>
+              <div tabindex="-1" class="item__contents hide">
                 <ul class="contents__menu">
                   <li>
                     <ul class="contents">
@@ -112,6 +255,25 @@
                   <span class="material-icons">search</span>
                 </div>
 
+                <!-- 체험 옵션창 -->
+                <div class="optionList">
+                  <!-- 체험 위치 -->
+                  <div class="location_search option">
+                    <a href="javascript:void(0)">
+                      <ul>
+                        <li><img src="https://a0.muscache.com/im/pictures/fc42dde0-36a7-460e-af89-10b5e44e48d8.jpg?im_w=240&im_q=lowq">
+                        </li>
+                        <li>근처 추천 장소</li>
+                      </ul>
+                    </a>
+                  </div>
+
+                  <!-- 체험 날짜 -->
+                  <div class="checkin option">
+
+                  </div>
+                </div>
+
 
               </div>
 
@@ -120,147 +282,9 @@
             </li>
           </ul>
 
-          <!-- 메뉴에 옵션으로 뜨는 창 -->
-          <!-- 위치 -->
-          <div class="location_search option">
-            <ul>
-              <li class="location_search_txt">
-                어디로든 떠나는 여행
-              </li>
-              <li class="location_search_button">
-                <a href="javascript:void(0)">
-                  <ul>
-                    <li>유연한 검색</li>
-                    <li class="arrow_button">
-                      <span class="material-icons">
-                        arrow_forward_ios
-                      </span>
-                    </li>
-                  </ul>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- 체크인 -->
-          <div class="checkin option">
-
-          </div>
-
-          <!-- 체크아웃 -->
-          <div class="checkout option">
-
-          </div>
-
-
-          <!-- 인원 -->
-          <div class="guestnumber option">
-            <ul class="guestnumber_wrap">
-              <li class="adultnumber">
-                <ul>
-                  <li class="txt">
-                    <ul>
-                      <li class="title">성인</li>
-                      <li class="detail">만 13세 이상</li>
-                    </ul>
-                  </li>
-                  <li class="numberbutton">
-                    <div class="button__minus">
-                      <span class="material-icons">
-                        remove
-                      </span>
-                    </div>
-                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
-                    <div class="result">0</div>
-                    <div class="button__plus">
-                      <span class="material-icons">
-                        add
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="childrennumber">
-                <ul>
-                  <li class="txt">
-                    <ul>
-                      <li class="title">어린이</li>
-                      <li class="detail">만 2~12세</li>
-                    </ul>
-                  </li>
-                  <li class="numberbutton">
-                    <div class="button__minus">
-                      <span class="material-icons">
-                        remove
-                    </span></div>
-                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
-                    <div class="result">0</div>
-                    <div class="button__plus">
-                      <span class="material-icons">
-                        add
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="kidsnumber">
-                <ul>
-                  <li class="txt">
-                    <ul>
-                      <li class="title">유아</li>
-                      <li class="detail">만 2세 미만</li>
-                    </ul>
-                  </li>
-                  <li class="numberbutton">
-                    <div class="button__minus">
-                      <span class="material-icons">
-                        remove
-                      </span>
-                    </div>
-                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
-                    <div class="result">0</div>
-                    <div class="button__plus">
-                      <span class="material-icons">
-                        add
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="petnumber">
-                <ul>
-                  <li class="txt">
-                    <ul>
-                      <li class="title">반려동물</li>
-                      <li class="detail"><a href="javascript:void(0)">보조동물을 동반하시나요?</a></li>
-                    </ul>
-                  </li>
-                  <li class="numberbutton">
-                    <div class="button__minus">
-                      <span class="material-icons">
-                        remove
-                      </span>
-                    </div>
-                    <!-- 자바스크립트로 인원숫자 넣는 곳 -->
-                    <div class="result">0</div>
-                    <div class="button__plus">
-                      <span class="material-icons">
-                        add
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="info">
-                <div class="detail">
-                  반려동물을 3마리 이상 동반하는 경우, 반드시<br>
-                  호스트에게 알려주세요.
-                </div>
-              </li>
-            </ul>
-          </div>
-
         </div>
+
+
 
 
 
@@ -275,10 +299,19 @@
               </div>
             </div>
 
-            <div class="signin">
+            <div class="signin" tabindex="-1">
               <div class="signin_item">
                 <span class="material-icons">segment</span>
                 <span class="material-icons">account_circles</span>
+              </div>
+              <div class="signinTxt">
+                <ul>
+                  <li><a href="javscript:void(0)" style="font-weight: bold">회원 가입</a></li>
+                  <li><a href="javscript:void(0)">로그인</a></li>
+                  <li><a href="javscript:void(0)">숙소 호스트 되기</a></li>
+                  <li><a href="javscript:void(0)">체험 호스팅하기</a></li>
+                  <li><a href="javscript:void(0)">도움말</a></li>
+                </ul>
               </div>
             </div>
           </div>
