@@ -118,17 +118,88 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/main.js":[function(require,module,exports) {
+var headerWrap = document.querySelector('.headerWrap');
+var headerLogo = document.querySelectorAll('.logo img');
 var menunameEl = document.getElementsByClassName('item__name');
 var submenuEl = document.getElementsByClassName('item__contents');
+var startSearchTxt = document.getElementsByClassName('startSearchTxt');
 var searchEl = document.getElementsByClassName('search_icon');
+var searchElTxt = document.getElementsByClassName('searchTxt');
+var submenuliElsBox = document.getElementsByClassName('contents__menu');
 var submenuliEls = document.querySelectorAll('.contents__menu>li');
 var optionMenu = document.getElementsByClassName('option');
 var optionList = document.getElementsByClassName('optionList');
 var inputEls = document.querySelectorAll('input');
+var headerRightHost = document.querySelector('.header_right_host a');
+var headerRightLang = document.querySelector('.header_right_host .material-icons');
 var signIn = document.querySelector('.signin');
-var signInTxt = document.querySelector('.signinTxt'); // 메인메뉴 클릭시 서브옵션메뉴 생성
+var signInTxt = document.querySelector('.signinTxt'); //스크롤시 헤더 변경
 
-var _loop = function _loop(i) {
+document.addEventListener('scroll', function () {
+  var nowScrollTop = document.documentElement.scrollTop;
+
+  if (nowScrollTop > 0) {
+    //헤더 높이가 좁아졌을 때
+    headerWrap.classList.add('up');
+    headerWrap.style.backgroundColor = "#fff";
+    headerRightHost.style.color = "#222";
+    headerRightLang.style.color = "#222"; //i가 3개
+
+    for (var i = 0; i < menunameEl.length; i++) {
+      menunameEl[i].style.display = "none";
+    } //i가 2개
+
+
+    for (var _i = 0; _i < submenuliElsBox.length; _i++) {
+      headerLogo[1].style.cssText = "display:block";
+      headerLogo[0].style.cssText = "display:none";
+      startSearchTxt[_i].style.cssText = "display:block";
+      submenuEl[_i].style.top = "10px";
+      submenuliElsBox[_i].style.cssText = "width:28%; height:80%; border: 1px solid #ccc";
+      searchEl[_i].style.cssText = "width:35px; height:35px; right:10px";
+      searchElTxt[_i].style.cssText = "display:none";
+    } //i가 6개
+
+
+    for (var _i2 = 0; _i2 < submenuliEls.length; _i2++) {
+      submenuliEls[_i2].style.cssText = "display:none";
+      optionMenu[_i2].style.display = "none";
+    } //헤더가 넓어졌을 때
+
+  } else if (nowScrollTop === 0) {
+    headerWrap.classList.remove('up');
+    headerWrap.style.backgroundColor = "";
+    headerRightHost.style.color = "";
+    headerRightLang.style.color = ""; //i가 3개
+
+    for (var _i3 = 0; _i3 < menunameEl.length; _i3++) {
+      menunameEl[_i3].style.display = "";
+    } //i가 2개
+
+
+    for (var _i4 = 0; _i4 < submenuliElsBox.length; _i4++) {
+      headerLogo[0].style.cssText = "display:block";
+      headerLogo[1].style.cssText = "display:none";
+      startSearchTxt[_i4].style.cssText = "display:none";
+      submenuEl[_i4].style.top = "";
+      submenuliElsBox[_i4].style.cssText = "";
+      searchEl[_i4].style.cssText = "";
+    } //i가 6개
+
+
+    var _loop = function _loop(_i5) {
+      setTimeout(function () {
+        submenuliEls[_i5].style.display = "block";
+      }, 100);
+    };
+
+    for (var _i5 = 0; _i5 < submenuliEls.length; _i5++) {
+      _loop(_i5);
+    }
+  }
+}); // 메인메뉴 클릭시 서브옵션메뉴 생성
+
+var _loop2 = function _loop2(i) {
   menunameEl[i].addEventListener('click', function () {
     for (var j = 0; j < 2; j++) {
       submenuEl[j].classList.add('hide');
@@ -137,6 +208,8 @@ var _loop = function _loop(i) {
 
     submenuEl[i].classList.remove('hide');
     menunameEl[i].classList.add('on');
+    searchElTxt[i].style.cssText = "display:none";
+    searchEl[i].style.width = "";
 
     if (i === 0) {
       optionList[1].style.display = "none";
@@ -149,7 +222,7 @@ var _loop = function _loop(i) {
 };
 
 for (var i = 0; i < 2; i++) {
-  _loop(i);
+  _loop2(i);
 } //signin 버튼 클릭시 옵션창(회원가입/로그인 등) 활성화
 
 
@@ -158,21 +231,15 @@ signIn.addEventListener('click', function () {
 });
 signIn.addEventListener('blur', function () {
   signInTxt.style.display = "";
-}); // 검색아이콘 클릭 시 검색문구 추가 (숙소메뉴0 / 체험메뉴1)
+}); // 검색아이콘 클릭 시 검색문구 추가 / 첫번째 서브메뉴 너비 줄어듬 (숙소메뉴0 / 체험메뉴1)
 
-var _loop2 = function _loop2(_i) {
-  searchEl[_i].addEventListener('click', function searchElTxt() {
-    var content = document.createTextNode('검색');
-    var newdiv = document.createElement('div');
-    newdiv.style.cssText = "color:white; font-weight:bold; position:absolute; top:12px; left:37px";
-    newdiv.appendChild(content);
+var _loop3 = function _loop3(_i6) {
+  // 검색 아이콘 클릭
+  searchEl[_i6].addEventListener('click', function () {
+    searchElTxt[_i6].style.cssText = "display:block";
+    searchEl[_i6].style.width = "90px"; //숙소메뉴 검색아이콘0 클릭시
 
-    searchEl[_i].appendChild(newdiv);
-
-    searchEl[_i].style.cssText = "width:90px"; //숙소메뉴 검색아이콘0 클릭시
-
-    if (_i === 0) {
-      submenuliEls[0].style.paddingright = "10px";
+    if (_i6 === 0) {
       optionMenu[0].style.display = "block";
       submenuliEls[0].classList.add('on');
 
@@ -181,8 +248,7 @@ var _loop2 = function _loop2(_i) {
         submenuliEls[j].classList.remove('on');
       } //체험메뉴 검색아이콘1 클릭시  
 
-    } else if (_i === 1) {
-      submenuliEls[4].style.paddingright = "10px";
+    } else if (_i6 === 1) {
       optionMenu[4].style.display = "block";
       submenuliEls[4].classList.add('on');
 
@@ -192,31 +258,28 @@ var _loop2 = function _loop2(_i) {
         submenuliEls[_j].classList.remove('on');
       }
     }
-  });
-};
-
-for (var _i = 0; _i < searchEl.length; _i++) {
-  _loop2(_i);
-} //옵션창 활성화 상태에서 다른 부분 클릭시 옵션창 비활성화
+  }); //옵션창 활성화 상태에서 다른 부분 클릭시 옵션창 비활성화
 
 
-var _loop3 = function _loop3(_i2) {
-  submenuEl[_i2].addEventListener('click', function () {
-    optionList[_i2].style.display = "block";
+  submenuEl[_i6].addEventListener('click', function () {
+    optionList[_i6].style.display = "block";
   });
 
-  submenuEl[_i2].addEventListener('blur', function () {
-    optionList[_i2].style.display = "none";
+  submenuEl[_i6].addEventListener('blur', function () {
+    optionList[_i6].style.display = "none";
 
     for (var j = 0; j < submenuliEls.length; j++) {
       submenuliEls[j].classList.remove('on');
     }
+
+    searchElTxt[_i6].style.cssText = "display:none";
+    searchEl[_i6].style.width = "";
   }); // 옵션창 내의 input 클릭 후 다른 부분 클릭시 옵션창 비활성화
 
 
-  inputEls[_i2].addEventListener('blur', function () {
-    optionList[_i2].style.display = "none";
-    inputEls[_i2].value = "";
+  inputEls[_i6].addEventListener('blur', function () {
+    optionList[_i6].style.display = "none";
+    inputEls[_i6].value = "";
 
     for (var j = 0; j < submenuliEls.length; j++) {
       submenuliEls[j].classList.remove('on');
@@ -224,43 +287,35 @@ var _loop3 = function _loop3(_i2) {
   });
 };
 
-for (var _i2 = 0; _i2 < submenuEl.length; _i2++) {
-  _loop3(_i2);
+for (var _i6 = 0; _i6 < searchEl.length; _i6++) {
+  _loop3(_i6);
 } //서브메뉴 클릭시 입체적으로 그림자생성 
 
 
-var _loop4 = function _loop4(_i3) {
-  submenuliEls[_i3].addEventListener('click', function () {
+var _loop4 = function _loop4(_i7) {
+  submenuliEls[_i7].addEventListener('click', function () {
     for (var j = 0; j < submenuliEls.length; j++) {
       submenuliEls[j].classList.remove('on');
       optionMenu[j].style.display = "none";
     }
 
-    submenuliEls[_i3].classList.add('on');
+    submenuliEls[_i7].classList.add('on');
 
-    optionMenu[_i3].style.display = "block"; //검색아이콘 활성화
+    optionMenu[_i7].style.display = "block"; //검색아이콘 활성화
 
-    for (var _i5 = 0; _i5 < searchEl.length; _i5++) {
-      var content = document.createTextNode('검색');
-      var newdiv = document.createElement('div');
-      newdiv.style.cssText = "color:white; font-weight:bold; position:absolute; top:12px; left:37px;";
-      newdiv.appendChild(content);
-
-      searchEl[_i5].appendChild(newdiv);
-
-      searchEl[_i5].style.cssText = "width:90px;";
-
-      if (_i5 === 0) {
-        submenuliEls[0].style.cssText = "padding-right:10px";
-      } else if (_i5 === 1) {
-        submenuliEls[4].style.cssText = "padding-right:10px";
-      }
+    for (var _i9 = 0; _i9 < searchEl.length; _i9++) {
+      searchElTxt[_i9].style.cssText = "display:block";
+      searchEl[_i9].style.width = "90px"; // if (i === 0) {
+      //   submenuliEls[0].style.cssText = "padding-right:100px";
+      // } else if (i === 1) {
+      //   submenuliEls[4].style.cssText = "padding-right:10px";
+      // }
     }
   });
 };
 
-for (var _i3 = 0; _i3 < submenuliEls.length; _i3++) {
-  _loop4(_i3);
+for (var _i7 = 0; _i7 < submenuliEls.length; _i7++) {
+  _loop4(_i7);
 } // 인원추가 버튼
 
 
@@ -270,54 +325,54 @@ var plusiconLine = document.getElementsByClassName('button__plus');
 var plusicon = document.querySelectorAll('.button__plus span');
 var resultEl = document.getElementsByClassName('result');
 
-var _loop5 = function _loop5(_i4) {
-  minusicon[_i4].addEventListener('click', function () {
-    var number = resultEl[_i4].innerText;
+var _loop5 = function _loop5(_i8) {
+  minusicon[_i8].addEventListener('click', function () {
+    var number = resultEl[_i8].innerText;
     number = parseInt(number) - 1;
 
     if (number < 0) {
       number = 0;
     } else if (0 < number < 5) {
-      plusiconLine[_i4].style.borderColor = "grey";
-      plusicon[_i4].style.color = "grey";
-      minusiconLine[_i4].style.borderColor = "grey";
-      minusicon[_i4].style.color = "grey";
+      plusiconLine[_i8].style.borderColor = "grey";
+      plusicon[_i8].style.color = "grey";
+      minusiconLine[_i8].style.borderColor = "grey";
+      minusicon[_i8].style.color = "grey";
     }
 
     if (number === 0) {
-      minusiconLine[_i4].style.borderColor = "#ccc";
-      minusicon[_i4].style.color = "#ccc";
-      plusiconLine[_i4].style.borderColor = "grey";
-      plusicon[_i4].style.color = "grey";
+      minusiconLine[_i8].style.borderColor = "#ccc";
+      minusicon[_i8].style.color = "#ccc";
+      plusiconLine[_i8].style.borderColor = "grey";
+      plusicon[_i8].style.color = "grey";
     }
 
-    resultEl[_i4].innerText = number;
+    resultEl[_i8].innerText = number;
   });
 
-  plusicon[_i4].addEventListener('click', function () {
-    var number = resultEl[_i4].innerText;
+  plusicon[_i8].addEventListener('click', function () {
+    var number = resultEl[_i8].innerText;
     number = parseInt(number) + 1;
 
     if (number > 5) {
       number = 5;
     } else if (0 < number < 5) {
-      minusiconLine[_i4].style.borderColor = "grey";
-      minusicon[_i4].style.color = "grey";
+      minusiconLine[_i8].style.borderColor = "grey";
+      minusicon[_i8].style.color = "grey";
     }
 
     if (number === 5) {
-      plusiconLine[_i4].style.borderColor = "#ccc";
-      plusicon[_i4].style.color = "#ccc";
-      minusiconLine[_i4].style.borderColor = "grey";
-      minusicon[_i4].style.color = "grey";
+      plusiconLine[_i8].style.borderColor = "#ccc";
+      plusicon[_i8].style.color = "#ccc";
+      minusiconLine[_i8].style.borderColor = "grey";
+      minusicon[_i8].style.color = "grey";
     }
 
-    resultEl[_i4].innerText = number;
+    resultEl[_i8].innerText = number;
   });
 };
 
-for (var _i4 = 0; _i4 < minusicon.length; _i4++) {
-  _loop5(_i4);
+for (var _i8 = 0; _i8 < minusicon.length; _i8++) {
+  _loop5(_i8);
 }
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -347,7 +402,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50599" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
