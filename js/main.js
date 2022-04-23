@@ -17,10 +17,34 @@ const signInTxt = document.querySelector('.signinTxt')
 
 
 
+
+//서브메뉴 클릭시 입체적으로 그림자생성 (디폴트)
+for (let i = 0; i < submenuliEls.length; i++) {
+  submenuliEls[i].addEventListener('click', function () {
+    for (let j = 0; j < submenuliEls.length; j++) {
+      submenuliEls[j].classList.remove('on')
+      optionMenu[j].style.display = "none"
+    }
+    submenuliEls[i].classList.add('on')
+    optionMenu[i].style.display = "block"
+  })
+}
+//서브메뉴 클릭시 검색아이콘 활성화
+for (let i = 0; i < searchEl.length; i++) {
+  submenuliElsBox[i].addEventListener('click', function () {
+    searchElTxt[i].style.cssText = "display:block";
+    searchEl[i].style.width = "90px"
+
+  })
+}
+
+
+
+
 //스크롤시 헤더 변경
 document.addEventListener('scroll', function () {
   const nowScrollTop = document.documentElement.scrollTop;
-  if (nowScrollTop > 0) { //헤더 높이가 좁아졌을 때
+  if (nowScrollTop > 0) { //헤더 높이가 좁아졌을 때 (스크롤이 0 이상일 때)
     headerWrap.classList.add('up')
     headerWrap.style.backgroundColor = "#fff"
     headerRightHost.style.color = "#222"
@@ -31,9 +55,9 @@ document.addEventListener('scroll', function () {
     }
     //i가 2개
     for (let i = 0; i < submenuliElsBox.length; i++) {
-      headerLogo[1].style.cssText="display:block"
-      headerLogo[0].style.cssText="display:none"
-      startSearchTxt[i].style.cssText="display:block"
+      headerLogo[1].style.cssText = "display:block"
+      headerLogo[0].style.cssText = "display:none"
+      startSearchTxt[i].style.cssText = "display:block"
       submenuEl[i].style.top = "10px"
       submenuliElsBox[i].style.cssText = "width:28%; height:80%; border: 1px solid #ccc"
       searchEl[i].style.cssText = "width:35px; height:35px; right:10px"
@@ -41,11 +65,45 @@ document.addEventListener('scroll', function () {
     }
     //i가 6개
     for (let i = 0; i < submenuliEls.length; i++) {
-      submenuliEls[i].style.cssText="display:none"
+      submenuliEls[i].style.cssText = "display:none"
       optionMenu[i].style.display = "none"
     }
 
-    //헤더가 넓어졌을 때
+    // 헤더가 좁아졌을 때 검색 시작하기 클릭시 헤더 넓어짐(배경흰색일 때)
+    for (let i = 0; i < submenuliElsBox.length; i++) {
+      
+      submenuliElsBox[i].addEventListener('click', function () {
+        headerWrap.classList.remove('up')
+        headerWrap.style.backgroundColor = "#fff"
+        headerRightHost.style.color = "#222"
+        headerRightLang.style.color = "#222"
+        //i가 3개
+        for (let i = 0; i < menunameEl.length; i++) {
+          menunameEl[0].style.cssText = ""
+          // menunameEl[i].style.color = "#222"
+          
+        }
+        //i가 2개
+        for (let i = 0; i < submenuliElsBox.length; i++) {
+          headerLogo[0].style.cssText = "display:none"
+          headerLogo[1].style.cssText = "display:block"
+          startSearchTxt[i].style.cssText = "display:none"
+          submenuEl[i].style.top = ""
+          submenuliElsBox[i].style.cssText = ""
+          searchEl[i].style.cssText = ""
+
+        }
+        //i가 6개
+        for (let i = 0; i < submenuliEls.length; i++) {
+          setTimeout(() => {
+            submenuliEls[i].style.display = "block"
+          }, 100)
+        }
+      })
+
+    }
+
+    //헤더가 넓어졌을 때 (스크롤이 0일 때)
   } else if (nowScrollTop === 0) {
     headerWrap.classList.remove('up')
     headerWrap.style.backgroundColor = ""
@@ -54,12 +112,14 @@ document.addEventListener('scroll', function () {
     //i가 3개
     for (let i = 0; i < menunameEl.length; i++) {
       menunameEl[i].style.display = ""
+      menunameEl[i].style.color = "#fff"
+      menunameEl[2].firstChild.style.color = "#fff"
     }
     //i가 2개
     for (let i = 0; i < submenuliElsBox.length; i++) {
-      headerLogo[0].style.cssText="display:block"
-      headerLogo[1].style.cssText="display:none"
-      startSearchTxt[i].style.cssText="display:none"
+      headerLogo[0].style.cssText = "display:block"
+      headerLogo[1].style.cssText = "display:none"
+      startSearchTxt[i].style.cssText = "display:none"
       submenuEl[i].style.top = ""
       submenuliElsBox[i].style.cssText = ""
       searchEl[i].style.cssText = ""
@@ -72,9 +132,71 @@ document.addEventListener('scroll', function () {
       }, 100)
 
     }
+
+    // 헤더가 넓어졌을 때(스크롤 0일때) 검색 시작하기 클릭시 옵션창뜨기(헤더모양 그대로 유지)
+    for (let i = 0; i < submenuliElsBox.length; i++) {
+      for (let i = 0; i < menunameEl.length; i++) {
+        menunameEl[i].style.cssText = ""
+        menunameEl[2].firstChild.style.cssText= ""
+      }
+      submenuliElsBox[i].addEventListener('click', function () {
+        headerWrap.classList.remove('up')
+        headerWrap.style.backgroundColor = ""
+        headerRightHost.style.color = "#fff"
+        headerRightLang.style.color = "#fff"
+        //i가 3개
+        for (let i = 0; i < menunameEl.length; i++) {
+          menunameEl[i].style.cssText = ""
+          menunameEl[2].firstChild.style.cssText= ""
+        }
+        //i가 2개
+        for (let i = 0; i < submenuliElsBox.length; i++) {
+          headerLogo[0].style.cssText = "display:block"
+          headerLogo[1].style.cssText = "display:none"
+          startSearchTxt[i].style.cssText = "display:none"
+          submenuEl[i].style.top = ""
+          submenuliElsBox[i].style.cssText = ""
+          // searchEl[i].style.cssText = ""
+
+        }
+        //i가 6개
+        for (let i = 0; i < submenuliEls.length; i++) {
+          setTimeout(() => {
+            submenuliEls[i].style.display = "block"
+          }, 100)
+        }
+
+      })
+    }
+
   }
 
+
+  //서브메뉴 클릭시 검색아이콘 활성화
+  for (let i = 0; i < searchEl.length; i++) {
+    submenuliElsBox[i].addEventListener('click', function () {
+      searchElTxt[i].style.cssText = "display:block";
+      searchEl[i].style.width = "90px"
+    })
+  }
+
+  //스크롤한 후 클릭했던 서브메뉴와 옵션창이 다른 서브메뉴를 클릭하면 리셋되도록(클릭안한 상태로 돌아가도록)
+  for (let i = 0; i < submenuliEls.length; i++) {
+    submenuliEls[i].classList.remove('on')
+  }
+  
+  const headerColor = headerWrap.css.backgroundColor
+  if(headerColor === '#fff'){
+    for(let i =0; menunameEl.length; i++){
+      menunameEl[i].classList.add('black')
+    }
+  } 
+  
 })
+
+
+
+
 
 
 // 메인메뉴 클릭시 서브옵션메뉴 생성
@@ -108,7 +230,7 @@ signIn.addEventListener('blur', function () {
 })
 
 
-// 검색아이콘 클릭 시 검색문구 추가 / 첫번째 서브메뉴 너비 줄어듬 (숙소메뉴0 / 체험메뉴1)
+// 검색아이콘 클릭 시 검색문구 아이콘에 추가 / 첫번째 옵션창 활성화
 for (let i = 0; i < searchEl.length; i++) {
   // 검색 아이콘 클릭
   searchEl[i].addEventListener('click', function () {
@@ -118,23 +240,19 @@ for (let i = 0; i < searchEl.length; i++) {
     //숙소메뉴 검색아이콘0 클릭시
     if (i === 0) {
       optionMenu[0].style.display = "block"
-      submenuliEls[0].classList.add('on')
       for (let j = 1; j < 4; j++) {
         optionMenu[j].style.display = "none"
-        submenuliEls[j].classList.remove('on')
       }
       //체험메뉴 검색아이콘1 클릭시  
     } else if (i === 1) {
       optionMenu[4].style.display = "block";
-      submenuliEls[4].classList.add('on')
       for (let j = 5; j < 6; j++) {
         optionMenu[j].style.display = "none"
-        submenuliEls[j].classList.remove('on')
       }
     }
   })
-  
-  
+
+
 
   //옵션창 활성화 상태에서 다른 부분 클릭시 옵션창 비활성화
 
@@ -172,30 +290,26 @@ for (let i = 0; i < searchEl.length; i++) {
 
 
 
-//서브메뉴 클릭시 입체적으로 그림자생성 
-for (let i = 0; i < submenuliEls.length; i++) {
-  submenuliEls[i].addEventListener('click', function () {
-    for (let j = 0; j < submenuliEls.length; j++) {
-      submenuliEls[j].classList.remove('on')
-      optionMenu[j].style.display = "none"
-    }
-    submenuliEls[i].classList.add('on')
-    optionMenu[i].style.display = "block"
+// //서브메뉴 클릭시 입체적으로 그림자생성 
+// for (let i = 0; i < submenuliEls.length; i++) {
+//   submenuliEls[i].addEventListener('click', function () {
+//     for (let j = 0; j < submenuliEls.length; j++) {
+//       submenuliEls[j].classList.remove('on')
+//       optionMenu[j].style.display = "none"
+//     }
+//     submenuliEls[i].classList.add('on')
+//     optionMenu[i].style.display = "block"
+//   })
+// }
+// //서브메뉴 클릭시 검색아이콘 활성화
+// for (let i = 0; i < searchEl.length; i++) {
+//   submenuliElsBox[i].addEventListener('click', function () {
+//     searchElTxt[i].style.cssText = "display:block";
+//     searchEl[i].style.width = "90px"
+//     console.log(searchEl)
+//   })
+// }
 
-
-    //검색아이콘 활성화
-    for (let i = 0; i < searchEl.length; i++) {
-      searchElTxt[i].style.cssText = "display:block";
-      searchEl[i].style.width = "90px"
-      // if (i === 0) {
-      //   submenuliEls[0].style.cssText = "padding-right:100px";
-      // } else if (i === 1) {
-      //   submenuliEls[4].style.cssText = "padding-right:10px";
-      // }
-    }
-  })
-
-}
 
 
 
